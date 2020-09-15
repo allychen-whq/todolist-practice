@@ -2,25 +2,26 @@ import React, { useContext } from "react";
 import todoContext from "./../contexts/todoContext";
 
 export default function TodoItem(props) {
-  const { alert, methods } = useContext(todoContext);
+  const { item } = props;
+  const { alertSetter, methods } = useContext(todoContext);
 
   return (
-    <li className={props.data.completed ? "item-todo completed" : "item-todo"}>
-      <span className="item-content">{props.data.title}</span>
+    <li className={item.completed ? "item-todo completed" : "item-todo"}>
+      <span className="item-content">{item.title}</span>
       <span className="action-or-date">
-        <span className="date">完成時間: {props.data.completedDate}</span>
+        <span className="date">完成時間: {item.completedDate}</span>
         <label className="btn-underline">
           <input
             className="hidden"
             type="checkbox"
-            name={`completed${props.data.id}`}
-            checked={props.data.completed}
+            name={`completed${item.id}`}
+            checked={item.completed}
             onChange={(event) => {
-              alert.setter({
-                text: `You've done [ ${props.data.title} ]. Great!`,
+              alertSetter({
+                text: `You've done [ ${item.title} ]. Great!`,
                 color: "green"
               });
-              methods.completeItem(props.data.id);
+              methods.completeItem(item.id);
             }}
           />
           Mark as done
@@ -29,11 +30,11 @@ export default function TodoItem(props) {
           className="btn-underline"
           type="button"
           onClick={() => {
-            alert.setter({
-              text: `[ ${props.data.title} ] has been deleted.`,
+            alertSetter({
+              text: `[ ${item.title} ] has been deleted.`,
               color: "red"
             });
-            methods.deleteItem(props.data.id);
+            methods.deleteItem(item.id);
           }}
         >
           Delete

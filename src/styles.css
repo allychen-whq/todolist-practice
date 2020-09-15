@@ -130,7 +130,6 @@ ul {
   visibility: hidden;
 }
 .error {
-  transition: 0.2s linear all;
   opacity: 0;
   visibility: hidden;
   padding: 0.5rem 1rem;

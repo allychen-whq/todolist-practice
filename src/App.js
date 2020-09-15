@@ -18,12 +18,11 @@ export default function App() {
   useEffect(() => {
     if (alert.text) {
       setShowAlert(true);
-      setTimeout(() => {
+      const reset = setTimeout(() => {
         setShowAlert(false);
-      }, 1500);
-      setTimeout(() => {
         setAlert({ text: "", color: "" });
-      }, 1700);
+      }, 1500);
+      return () => clearTimeout(reset);
     }
   }, [alert.text]);
 
@@ -72,13 +71,8 @@ export default function App() {
     <todoContext.Provider
       value={{
         data: data,
-        alert: {
-          show: showAlert,
-          text: alert,
-          setter: setAlert
-        },
+        alertSetter: setAlert,
         methods: {
-          addItem: addItem,
           deleteItem: deleteItem,
           completeItem: completeItem
         }
@@ -93,10 +87,10 @@ export default function App() {
         </h4>
         <TodoForm
           todoInput={todoInput}
+          addItem={addItem}
           handleInput={(e) => {
             setTodoInput(e.target.value);
           }}
-          handleClick={addItem}
         />
         <TodoList />
 

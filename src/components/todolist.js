@@ -2,8 +2,8 @@ import React, { useState, useContext } from "react";
 import TodoItem from "./todoitem";
 import todoContext from "./../contexts/todoContext";
 
-export default function TodoList2() {
-  const { data, alert } = useContext(todoContext);
+export default function TodoList() {
+  const { data, alertSetter } = useContext(todoContext);
   const [showCompleted, setShowCompleted] = useState(false);
 
   return (
@@ -22,7 +22,7 @@ export default function TodoList2() {
             checked={showCompleted}
             onChange={() => {
               if (!data.filter((n) => n.completed).length) {
-                alert.setter({ text: "No done items.", color: "blue" });
+                alertSetter({ text: "No done items.", color: "blue" });
                 return false;
               }
               setShowCompleted(!showCompleted);
@@ -34,7 +34,7 @@ export default function TodoList2() {
       <ul className="list-todo">
         {data.map((n) => {
           return (
-            (showCompleted || !n.completed) && <TodoItem key={n.id} data={n} />
+            (showCompleted || !n.completed) && <TodoItem key={n.id} item={n} />
           );
         })}
       </ul>

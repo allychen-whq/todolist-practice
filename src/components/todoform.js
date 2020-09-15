@@ -1,18 +1,19 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import todoContext from "./../contexts/todoContext";
 
 export default function TodoForm(props) {
-  const { alert, methods } = useContext(todoContext);
+  const { addItem, todoInput, handleInput } = props;
+  const { alertSetter } = useContext(todoContext);
   const validate = function (e) {
     e.preventDefault();
-    if (!props.todoInput) {
-      alert.setter({
+    if (!todoInput.trim()) {
+      alertSetter({
         text: "Please write down your task description.",
         color: "red"
       });
       return false;
     }
-    methods.addItem();
+    addItem();
   };
   return (
     <form className="input-wrap" onSubmit={(e) => validate(e)}>
@@ -20,8 +21,8 @@ export default function TodoForm(props) {
         className="input-underline"
         type="text"
         name="todoInput"
-        value={props.todoInput}
-        onChange={(event) => props.handleInput(event)}
+        value={todoInput}
+        onChange={(event) => handleInput(event)}
         placeholder="Add your task here..."
       />
       <button type="button" className="btn-add" onClick={(e) => validate(e)}>
