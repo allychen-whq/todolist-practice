@@ -1,0 +1,160 @@
+*,
+:before,
+:after {
+  box-sizing: border-box;
+}
+*:focus {
+  outline: none;
+}
+::-webkit-input-placeholder {
+  color: #b5b5b5;
+}
+
+:-ms-input-placeholder {
+  color: #b5b5b5;
+}
+
+::placeholder {
+  color: #b5b5b5;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: #f0eded;
+  color: #707070;
+  font-family: Arial, Helvetica, "Noto sans TC", sans-serif;
+}
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 1rem;
+}
+h1 {
+  font-size: 60px;
+  font-weight: 400;
+  margin-bottom: 0.25em;
+}
+h4 {
+  font-size: 20;
+  font-weight: 400;
+}
+button,
+label {
+  cursor: pointer;
+}
+.input-underline {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid #707070;
+  flex: 1;
+  padding: 0.5em 0;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.text-center {
+  text-align: center;
+}
+.input-wrap {
+  display: flex;
+  width: 100%;
+}
+.btn-add {
+  background-color: #fff;
+  border: 1px solid #707070;
+  padding: 0.25em 0.75em;
+  color: inherit;
+}
+.btn-add:hover {
+  background: #707070;
+  color: #fff;
+}
+.abstract {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em 0;
+  font-size: 14px;
+}
+.list-wrap {
+  max-width: 90%;
+  margin: auto;
+}
+.item-todo {
+  padding: 0.5em 1em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.item-todo:hover {
+  background: #e5e5e5;
+}
+.item-todo:not(.completed) .date {
+  display: none;
+}
+.completed .item-content {
+  text-decoration: line-through;
+}
+.completed .btn-underline {
+  display: none;
+}
+.btn-underline {
+  border: 0;
+  font-weight: bold;
+  color: #707070;
+  text-decoration: underline;
+  background: transparent;
+  padding: 0;
+  margin-left: 8px;
+}
+.btn-underline:hover {
+  opacity: 0.75;
+}
+.action-or-date {
+  font-weight: bold;
+  font-size: 14px;
+  width: 100%;
+  text-align: right;
+  opacity: 0;
+}
+.item-todo:hover .action-or-date,
+.completed .action-or-date {
+  opacity: 1;
+}
+.hidden {
+  position: absolute;
+  width: 0;
+  visibility: hidden;
+}
+.error {
+  transition: 0.2s linear all;
+  opacity: 0;
+  visibility: hidden;
+  padding: 0.5rem 1rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+}
+.error.visible {
+  opacity: 1;
+  visibility: visible;
+}
+@media screen and (min-width: 480px) {
+  .action-or-date {
+    width: auto;
+  }
+}
+@media screen and (min-width: 1024px) {
+  h1 {
+    font-size: 120px;
+  }
+  h4 {
+    font-size: 26px;
+  }
+}
